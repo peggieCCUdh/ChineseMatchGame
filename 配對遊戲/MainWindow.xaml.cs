@@ -24,7 +24,7 @@ namespace 配對遊戲
         DispatcherTimer timer = new DispatcherTimer();
         int tenthsOfSecondsElapsed;
         int matchesFound;
-
+        Dictionary<string, string> matchword = new Dictionary<string, string>();
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace 配對遊戲
         private void SetUpGame()
         {
             //throw new NotImplementedException();
-            List<string> matchword = new List<string>()
+            List<string> matchwordlist = new List<string>()
             {
             "打","手",
             "吃","口",
@@ -69,29 +69,6 @@ namespace 配對遊戲
             "爭","爪",
             "飯","食",
             };
-            Random random = new Random();
-            foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
-            {
-                if (textBlock.Name != "TimeTextBlock")
-                {
-                    textBlock.Visibility = Visibility.Visible;
-                    int index = random.Next(matchword.Count);
-                    string nextword = matchword[index];
-                    textBlock.Text = nextword;
-                    matchword.RemoveAt(index);
-                }
-            }
-            timer.Start();
-            tenthsOfSecondsElapsed = 0;
-            matchesFound = 0;
-        }
-
-        TextBlock lastTextBlockClicked;
-        bool findingMatch = false;
-
-        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Dictionary<string, string> matchword = new Dictionary<string, string>();
             matchword.Add("打", "1");
             matchword.Add("手", "1");
             matchword.Add("吃", "2");
@@ -128,6 +105,30 @@ namespace 配對遊戲
             matchword.Add("爪", "17");
             matchword.Add("飯", "18");
             matchword.Add("食", "18");
+            Random random = new Random();
+            foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
+            {
+                if (textBlock.Name != "TimeTextBlock")
+                {
+                    textBlock.Visibility = Visibility.Visible;
+                    int index = random.Next(matchwordlist.Count);
+                    string nextword = matchwordlist[index];
+                    textBlock.Text = nextword;
+                    textBlock.Name = matchword[nextword];
+                    matchwordlist.RemoveAt(index);
+                }
+            }
+            timer.Start();
+            tenthsOfSecondsElapsed = 0;
+            matchesFound = 0;
+        }
+
+        TextBlock lastTextBlockClicked;
+        bool findingMatch = false;
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+           
 
             TextBlock textBlock = sender as TextBlock;
                 if (findingMatch == false)
@@ -136,7 +137,7 @@ namespace 配對遊戲
                     lastTextBlockClicked = textBlock;
                     findingMatch = true;
                 }
-                else if (textBlock.Text == lastTextBlockClicked.Text)
+                else if (textBlock.Name == lastTextBlockClicked.Name)
                 {
                     matchesFound++;
                     textBlock.Visibility = Visibility.Hidden;
