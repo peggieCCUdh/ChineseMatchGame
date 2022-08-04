@@ -25,50 +25,10 @@ namespace 配對遊戲
         int tenthsOfSecondsElapsed;
         int matchesFound;
         Dictionary<string, string> matchword = new Dictionary<string, string>();
+
         public MainWindow()
         {
             InitializeComponent();
-
-            timer.Interval = TimeSpan.FromSeconds(.1);
-            timer.Tick += Timer_Tick;
-            SetUpGame();
-
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            tenthsOfSecondsElapsed++;
-            TimeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
-            if (matchesFound == 18)
-            {
-                timer.Stop();
-                TimeTextBlock.Text = TimeTextBlock.Text + "-Play again?";
-            }
-        }
-
-        private void SetUpGame()
-        {
-            //throw new NotImplementedException();
-            List<string> matchwordlist = new List<string>()
-            {
-            "打","手",
-            "吃","口",
-            "英","艸",
-            "國","囗",
-            "他","人",
-            "江","水",
-            "板","木",
-            "快","心",
-            "好","女",
-            "煮","火",
-            "天","大",
-            "早","日",
-            "會","曰",
-            "有","月",
-            "次","欠",
-            "步","止",
-            "爭","爪",
-            "飯","食",
-            };
             matchword.Add("打", "1");
             matchword.Add("手", "1");
             matchword.Add("吃", "2");
@@ -105,6 +65,47 @@ namespace 配對遊戲
             matchword.Add("爪", "17");
             matchword.Add("飯", "18");
             matchword.Add("食", "18");
+            timer.Interval = TimeSpan.FromSeconds(.1);
+            timer.Tick += Timer_Tick;
+            SetUpGame();
+
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            tenthsOfSecondsElapsed++;
+            TimeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
+            if (matchesFound == 18)
+            {
+                timer.Stop();
+                TimeTextBlock.Text = TimeTextBlock.Text + "　再來一次？";
+            }
+        }
+
+        private void SetUpGame()
+        {
+            //throw new NotImplementedException();
+            List<string> matchwordlist = new List<string>()
+            {
+            "打","手",
+            "吃","口",
+            "英","艸",
+            "國","囗",
+            "他","人",
+            "江","水",
+            "板","木",
+            "快","心",
+            "好","女",
+            "煮","火",
+            "天","大",
+            "早","日",
+            "會","曰",
+            "有","月",
+            "次","欠",
+            "步","止",
+            "爭","爪",
+            "飯","食",
+            };
+            
             Random random = new Random();
             foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
             {
