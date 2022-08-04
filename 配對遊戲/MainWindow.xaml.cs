@@ -47,30 +47,27 @@ namespace 配對遊戲
 
         private void SetUpGame()
         {
-            //string A = "打", B = "吃" ,C = "英",D = "國",E = "他",F = "江",G = "板",H = "快",I = "好",J = "煮",K = "大",L = "早",M = "會",N = "有",O = "次",P = "步",Q = "爭",R = "飯";
-            
             //throw new NotImplementedException();
             List<string> matchword = new List<string>()
             {
-               
-            "打","打",
-            "吃","吃",
-            "英","英",
-            "國","國",
-            "他","他",
-            "江","江",
-            "板","板",
-            "快","快",
-            "好","好",
-            "煮","煮",
-            "天","天",
-            "早","早",
-            "會","會",
-            "有","有",
-            "次","次",
-            "步","步",
-            "爭","爭",
-            "飯","飯",
+            "打","手",
+            "吃","口",
+            "英","草",
+            "國","囗",
+            "他","人",
+            "江","水",
+            "板","木",
+            "快","心",
+            "好","女",
+            "煮","火",
+            "天","大",
+            "早","日",
+            "會","曰",
+            "有","月",
+            "次","欠",
+            "步","止",
+            "爭","爪",
+            "飯","食",
             };
             Random random = new Random();
             foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
@@ -94,8 +91,45 @@ namespace 配對遊戲
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-  
-                TextBlock textBlock = sender as TextBlock;
+            Dictionary<string, string> matchword = new Dictionary<string, string>();
+            matchword.Add("打", "1");
+            matchword.Add("手", "1");
+            matchword.Add("吃", "2");
+            matchword.Add("口", "2");
+            matchword.Add("英", "3");
+            matchword.Add("艸", "3");
+            matchword.Add("國", "4");
+            matchword.Add("囗", "4");
+            matchword.Add("他", "5");
+            matchword.Add("人", "5");
+            matchword.Add("江", "6");
+            matchword.Add("水", "6");
+            matchword.Add("板", "7");
+            matchword.Add("木", "7");
+            matchword.Add("快", "8");
+            matchword.Add("心", "8");
+            matchword.Add("好", "9");
+            matchword.Add("女", "9");
+            matchword.Add("煮", "10");
+            matchword.Add("火", "10");
+            matchword.Add("天", "11");
+            matchword.Add("大", "11");
+            matchword.Add("早", "12");
+            matchword.Add("日", "12");
+            matchword.Add("會", "13");
+            matchword.Add("曰", "13");
+            matchword.Add("有", "14");
+            matchword.Add("月", "14");
+            matchword.Add("次", "15");
+            matchword.Add("欠", "15");
+            matchword.Add("步", "16");
+            matchword.Add("止", "16");
+            matchword.Add("爭", "17");
+            matchword.Add("爪", "17");
+            matchword.Add("飯", "18");
+            matchword.Add("食", "18");
+
+            TextBlock textBlock = sender as TextBlock;
                 if (findingMatch == false)
                 {
                     textBlock.Visibility = Visibility.Hidden;
@@ -113,10 +147,11 @@ namespace 配對遊戲
                     lastTextBlockClicked.Visibility = Visibility.Visible;
                     findingMatch = false;
                 }
+            
         }
         private void TimeTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (matchesFound == 8)
+            if (matchesFound == 18)
             {
                 SetUpGame();
             }
