@@ -114,7 +114,6 @@ namespace 配對遊戲
                     int index = random.Next(matchwordlist.Count);
                     string nextword = matchwordlist[index];
                     textBlock.Text = nextword;
-                    textBlock.Name = matchword[nextword];
                     matchwordlist.RemoveAt(index);
                 }
             }
@@ -137,7 +136,7 @@ namespace 配對遊戲
                     lastTextBlockClicked = textBlock;
                     findingMatch = true;
                 }
-                else if (textBlock.Name == lastTextBlockClicked.Name)
+                else if (matchword[textBlock.Text] == matchword[lastTextBlockClicked.Text])
                 {
                     matchesFound++;
                     textBlock.Visibility = Visibility.Hidden;
