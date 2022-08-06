@@ -57,8 +57,8 @@ namespace 配對遊戲
             matchword.Add("曰", "13");
             matchword.Add("有", "14");
             matchword.Add("月", "14");
-            matchword.Add("次", "15");
-            matchword.Add("欠", "15");
+            matchword.Add("爸", "15");
+            matchword.Add("父", "15");
             matchword.Add("步", "16");
             matchword.Add("止", "16");
             matchword.Add("爭", "17");
